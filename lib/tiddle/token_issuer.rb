@@ -51,12 +51,12 @@ module Tiddle
 
     def authentication_token_class(resource)
        ancestors = resource.class.ancestors.map(&:to_s)
- +
- +        if ancestors.include?("Mongoid::Document")
- +          resource.relations["authentication_tokens"].klass
- +        else
- +          resource.association(:authentication_tokens).klass
- +        end
+ 
+         if ancestors.include?("Mongoid::Document")
+           resource.relations["authentication_tokens"].klass
+         else
+           resource.association(:authentication_tokens).klass
+         end
     end
   end
 end
